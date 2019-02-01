@@ -1,0 +1,32 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-appengine/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-async/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-examples/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-http2-support/javadoc" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-stream/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-appengine/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-appengine/src/test/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-async/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-async/src/test/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/internal-async/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/internal-http/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/internal-json/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/internal-logging/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/internal-util/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/jmx/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-core/src/test/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-examples/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-http2-support/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-http2-support/src/test/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-stream/src/main/java" />
+      <root url="jar://$USER_HOME$/Downloads/twitter4j-4.0.7.zip!/twitter4j-stream/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
