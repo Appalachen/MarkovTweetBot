@@ -9,6 +9,8 @@ public class MarkovFunctionality {
     protected static final int WORDS_PER_STATE = 3;
     public static String urlText;
     public static int wortlaenge;
+
+    //Test
     @FXML
     public static String getGeneratedText (){
         long start = System.currentTimeMillis();
@@ -42,11 +44,9 @@ public class MarkovFunctionality {
         outputWithDuration("Building Markov chain took ", start, end);
 
 
+        int sentenceLengthInWords = wortlaenge;
 
-            int sentenceLengthInWords = wortlaenge;
-
-            return concat(mc.compose(sentenceLengthInWords));
-
+        return concat(mc.compose(sentenceLengthInWords));
 
 
     }
