@@ -12,12 +12,17 @@ public class MarkovFunctionality {
     @FXML
     public static String getGeneratedText (){
         long start = System.currentTimeMillis();
-
+        String text;
         TxtFileReader fileDownloader =
                 new TxtFileReader(urlText);
+        if (urlText.contains("http")) {
+            text = fileDownloader.download();
+        } else {
+            text = fileDownloader.fileReader();
+        }
 //        https://ia800503.us.archive.org/19/items/josefinemutzenba31284gut/31284-8.txt
-        String text = fileDownloader.fileReader();
-        System.out.println(text);
+//      text = fileDownloader.fileReader();
+//        System.out.println(text);
 
         long end = System.currentTimeMillis();
 

@@ -3,6 +3,7 @@ package Gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 import java.util.Timer;
@@ -22,6 +23,8 @@ public class Controller {
     public PasswordField setOAuthAccessToken;
     public PasswordField setOAuthAccessTokenSecret;
     public Button btn_setAuthKeys;
+    public Label label_anzahlZeichen;
+    public Button btn_setSentenceLength;
 
     public void markovGenerateButton(javafx.event.ActionEvent actionEvent) {
         if(Integer.parseInt(AnzahlDerWoerter.getText())< 3){
@@ -30,25 +33,45 @@ public class Controller {
         }
 
         if (UrlTextFeld.getText().isEmpty() ){
-                UrlTextFeld.setText("Error: gültige Url eingeben!");
-            }
+            UrlTextFeld.setText("Error: gültige Url eingeben!");
+        }
 
         String text= MarkovFunctionality.getGeneratedText();
 
 
         MarkovTextField.setText(text);
+        checkSentenceLength();
+    }
+
+    public void checkSentenceLength() {
+        int length = MarkovTextField.getText().length();
+        if (length > 240) {
+            label_anzahlZeichen.setTextFill(Color.RED);
+
+        } else {
+            label_anzahlZeichen.setTextFill(Color.BLACK);
+        }
+        label_anzahlZeichen.setText(length + "/240");
     }
     public void postOnTwitterButton(ActionEvent actionEvent){
+        if (MarkovTextField.getText().length() > 240) {
+            Label_StatusUpdate.setText("Tweetlänge überschritten!");
+        }
         TwitterFunctionality.sendTweet(MarkovTextField.getText());
     }
     public void setUrl(){
-    MarkovFunctionality.urlText=UrlTextFeld.getText();
-    Label_StatusUpdate.setText("Url is set");
-    Label_StatusUpdate.setTextFill(Paint.valueOf("#000000"));
+        if (UrlTextFeld.getText().contains("http") || UrlTextFeld.getText().contains(".txt")) {
+            MarkovFunctionality.urlText = UrlTextFeld.getText();
+            Label_StatusUpdate.setText("Url is set");
+        } else {
+            setLabel_StatusUpdateVisible("Url konnte nicht gesetzt werden");
+        }
+//    Label_StatusUpdate.setTextFill(Paint.valueOf("#000000"));
     }
     public void setSatzlaenge(){
         if(AnzahlDerWoerter.getText().matches("\\d{1,3}")&& Integer.parseInt(AnzahlDerWoerter.getText())>= MarkovFunctionality.WORDS_PER_STATE){
             MarkovFunctionality.wortlaenge=Integer.parseInt(AnzahlDerWoerter.getText());
+            setLabel_StatusUpdateVisible("Satzlaenge erfolgreich gesetzt");
         }
    else{
       setLabel_StatusUpdateVisible("Bitte nur 1- bis 3-Stellige Zahlen eingeben die größer als "+ MarkovFunctionality.WORDS_PER_STATE+ " sind");

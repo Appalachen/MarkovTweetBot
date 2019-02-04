@@ -59,7 +59,8 @@ public class TxtFileReader {
     public String download() {
         try {
             URL url = new URL(urlText);
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+
                 return reader.lines().collect(Collectors.joining(" "));
             } catch (IOException ex) {
                 throw new RuntimeException("IO failed", ex);

@@ -18,7 +18,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="769.0" prefWidth="404.0">
                      <children>
-                        <TextArea fx:id="MarkovTextField" layoutX="277.0" layoutY="41.0" prefHeight="60.0" prefWidth="499.0" />
+                        <TextArea fx:id="MarkovTextField" layoutX="277.0" layoutY="41.0" onKeyTyped="#checkSentenceLength" prefHeight="60.0" prefWidth="499.0" />
                         <Button fx:id="btn_sendTweet" layoutX="71.0" layoutY="41.0" mnemonicParsing="false" onAction="#markovGenerateButton" prefHeight="60.0" prefWidth="130.0" text="Generate MarkovText" />
                         <Button fx:id="btn_postOnTwitter" layoutX="71.0" layoutY="136.0" mnemonicParsing="false" onAction="#postOnTwitterButton" prefHeight="46.0" prefWidth="130.0" text="Post on Twitter" />
                         <TextField fx:id="AnzahlDerWoerter" layoutX="704.0" layoutY="147.0" prefHeight="25.0" prefWidth="43.0" />
@@ -29,6 +29,7 @@
                         <Label layoutX="435.0" layoutY="747.0" prefHeight="17.0" prefWidth="153.0" visible="false" />
                         <Label fx:id="Label_StatusUpdate" layoutX="449.0" layoutY="739.0" text="1" />
                         <Button fx:id="btn_setSentenceLength" layoutX="763.0" layoutY="147.0" mnemonicParsing="false" onAction="#setSatzlaenge" text="set Satzlänge" />
+                        <Label fx:id="label_anzahlZeichen" layoutX="792.0" layoutY="84.0" text="0/240" />
                      </children>
                   </AnchorPane>
             </content>
@@ -45,7 +46,7 @@
                         <Label layoutX="267.0" layoutY="111.0" text="setOAuthConsumerSecret" />
                         <Label layoutX="267.0" layoutY="154.0" text="setOAuthAccessToken" />
                         <Label layoutX="267.0" layoutY="197.0" text="setOAuthAccessTokenSecret" />
-                        <Button fx:id="btn_setAuthKeys" layoutX="191.0" layoutY="64.0" mnemonicParsing="false" text="set Keys" />
+                        <Button fx:id="btn_setAuthKeys" layoutX="191.0" layoutY="64.0" mnemonicParsing="false" onAction="#setAuthKeys" text="set Keys" />
                      </children></AnchorPane>
             </content>
           </Tab>
