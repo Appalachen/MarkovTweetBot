@@ -27,7 +27,6 @@ public class TxtFileReader {
 
             String line ;
             StringBuffer sb = new StringBuffer();
-            // systemeigenes Zeilenumbruchszeichen ermitteln
             String sep = System.getProperty("line.separator");
 
             while( (line=br.readLine()) != null )

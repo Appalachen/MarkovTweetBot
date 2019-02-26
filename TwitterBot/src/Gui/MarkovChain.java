@@ -11,146 +11,133 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
-    public final class MarkovChain {
+public final class MarkovChain {
 
-        /**
-         * Number of words per state.
-         */
-        private final int k;
 
-        /**
-         * The array of words.
-         */
-        private final String[] words;
+    private final int k;
 
-        /**
-         * State transition function.
-         */
-        private final Map<List<String>, Map<List<String>, Integer>> map =
-                new HashMap<>();
+    private final String[] words;
 
-        /**
-         * Maps to each state the number of its following states.
-         */
-        private final Map<List<String>, Integer> totalCountMap = new HashMap<>();
+    private final Map<List<String>, Map<List<String>, Integer>> map =
+            new HashMap<>();
 
-        /**
-         * The list of all states.
-         */
-        private final List<List<String>> vocabulary = new ArrayList<>();
+    private final Map<List<String>, Integer> totalCountMap = new HashMap<>();
 
-        private final Random random;
 
-        public MarkovChain(String[] words, int k, Random random) {
-            this.words = Objects.requireNonNull(words, "Word array is null.");
-            this.k = checkPositive(k);
+    private final List<List<String>> vocabulary = new ArrayList<>();
 
-            if (words.length < k) {
-                throw new IllegalArgumentException("number of words < k");
+    private final Random random;
+
+    public MarkovChain(String[] words, int k, Random random) {
+        this.words = Objects.requireNonNull(words, "Word array is null.");
+        this.k = checkPositive(k);
+
+        if (words.length < k) {
+            throw new IllegalArgumentException("number of words < k");
+        }
+
+        this.random = Objects.requireNonNull(random, "The random is null.");
+        build();
+    }
+
+    public MarkovChain(String[] words, int k) {
+        this(words, k, new Random());
+    }
+
+    public String[] compose(int numberOfWords) {
+        checkRequestedNumberOfWords(numberOfWords);
+        List<String> startState =
+                vocabulary.get(random.nextInt(vocabulary.size()));
+
+        String[] outputWords = new String[numberOfWords];
+        numberOfWords -= k;
+
+        for (int i = 0; i < startState.size(); ++i) {
+            outputWords[i] = startState.get(i);
+        }
+
+        int index = k;
+
+        while (numberOfWords-- > 0) {
+            List<String> nextState = randomTransition(startState);
+            outputWords[index++] = lastOf(nextState);
+            startState = nextState;
+        }
+
+        return outputWords;
+    }
+
+    private static <T> T lastOf(List<T> list) {
+        return list.get(list.size() - 1);
+    }
+
+    private List<String> randomTransition(List<String> startState) {
+        Map<List<String>, Integer> localMap = map.get(startState);
+
+        if (localMap == null) {
+            return vocabulary.get(random.nextInt(vocabulary.size()));
+        }
+
+        int choices = totalCountMap.get(startState);
+        int coin = random.nextInt(choices);
+
+        for (Map.Entry<List<String>, Integer> entry : localMap.entrySet()) {
+            if (coin < entry.getValue()) {
+                return entry.getKey();
             }
 
-            this.random = Objects.requireNonNull(random, "The random is null.");
-            build();
+            coin -= entry.getValue();
         }
 
-        public MarkovChain(String[] words, int k) {
-            this(words, k, new Random());
+        throw new IllegalStateException("Should not get here");
+    }
+
+    private void build() {
+        Set<List<String>> filter = new HashSet<>();
+        Deque<String> wordDeque = new ArrayDeque<>();
+
+        for (int i = 0; i < k; ++i) {
+            wordDeque.addLast(words[i]);
         }
 
-        public String[] compose(int numberOfWords) {
-            checkRequestedNumberOfWords(numberOfWords);
-            List<String> startState =
-                    vocabulary.get(random.nextInt(vocabulary.size()));
+        for (int i = k; i < words.length; ++i) {
+            List<String> startSentence = new ArrayList<>(wordDeque);
+            filter.add(startSentence);
 
-            String[] outputWords = new String[numberOfWords];
-            numberOfWords -= k;
+            wordDeque.removeFirst();
+            wordDeque.addLast(words[i]);
+            List<String> nextSentence = new ArrayList<>(wordDeque);
 
-            for (int i = 0; i < startState.size(); ++i) {
-                outputWords[i] = startState.get(i);
-            }
-
-            int index = k;
-
-            while (numberOfWords-- > 0) {
-                List<String> nextState = randomTransition(startState);
-                outputWords[index++] = lastOf(nextState);
-                startState = nextState;
-            }
-
-            return outputWords;
-        }
-
-        private static <T> T lastOf(List<T> list) {
-            return list.get(list.size() - 1);
-        }
-
-        private List<String> randomTransition(List<String> startState) {
-            Map<List<String>, Integer> localMap = map.get(startState);
+            Map<List<String>, Integer> localMap = map.get(startSentence);
 
             if (localMap == null) {
-                return vocabulary.get(random.nextInt(vocabulary.size()));
+                map.put(startSentence, localMap = new HashMap<>());
             }
 
-            int choices = totalCountMap.get(startState);
-            int coin = random.nextInt(choices);
+            localMap.put(nextSentence,
+                    localMap.getOrDefault(nextSentence, 0) + 1);
 
-            for (Map.Entry<List<String>, Integer> entry : localMap.entrySet()) {
-                if (coin < entry.getValue()) {
-                    return entry.getKey();
-                }
-
-                coin -= entry.getValue();
-            }
-
-            throw new IllegalStateException("Should not get here");
+            totalCountMap.put(startSentence,
+                    totalCountMap.getOrDefault(startSentence, 0) + 1);
         }
 
-        private void build() {
-            Set<List<String>> filter = new HashSet<>();
-            Deque<String> wordDeque = new ArrayDeque<>();
+        vocabulary.addAll(filter);
+    }
 
-            for (int i = 0; i < k; ++i) {
-                wordDeque.addLast(words[i]);
-            }
-
-            for (int i = k; i < words.length; ++i) {
-                List<String> startSentence = new ArrayList<>(wordDeque);
-                filter.add(startSentence);
-
-                wordDeque.removeFirst();
-                wordDeque.addLast(words[i]);
-                List<String> nextSentence = new ArrayList<>(wordDeque);
-
-                Map<List<String>, Integer> localMap = map.get(startSentence);
-
-                if (localMap == null) {
-                    map.put(startSentence, localMap = new HashMap<>());
-                }
-
-                localMap.put(nextSentence,
-                        localMap.getOrDefault(nextSentence, 0) + 1);
-
-                totalCountMap.put(startSentence,
-                        totalCountMap.getOrDefault(startSentence, 0) + 1);
-            }
-
-            vocabulary.addAll(filter);
+    private int checkPositive(int k) {
+        if (k < 1) {
+            throw new IllegalArgumentException("k < 1");
         }
 
-        private int checkPositive(int k) {
-            if (k < 1) {
-                throw new IllegalArgumentException("k < 1");
-            }
+        return k;
+    }
 
-            return k;
-        }
-
-        private void checkRequestedNumberOfWords(int numberOfWords) {
-            if (numberOfWords < k) {
-                throw new IllegalArgumentException(
-                        "The minimum number of words for composition should be " +
-                                k + ". Received " + numberOfWords);
-            }
+    private void checkRequestedNumberOfWords(int numberOfWords) {
+        if (numberOfWords < k) {
+            throw new IllegalArgumentException(
+                    "The minimum number of words for composition should be " +
+                            k + ". Received " + numberOfWords);
         }
     }
+}
 

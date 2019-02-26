@@ -2,52 +2,75 @@ package Gui;
 
 import javafx.fxml.FXML;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MarkovFunctionality {
 
     protected static final int WORDS_PER_STATE = 3;
-    public static String urlText;
-    public static int wortlaenge;
+    public String urlText;
+    public int wortlaenge;
+    public String text = null;
+    public long end = System.currentTimeMillis();
+
 
     //Test
     @FXML
-    public static String getGeneratedText (){
+    public String getGeneratedText() {
         long start = System.currentTimeMillis();
-        String text;
+
         TxtFileReader fileDownloader =
                 new TxtFileReader(urlText);
-        if (urlText.contains("http")) {
-            text = fileDownloader.download();
-        } else {
-            text = fileDownloader.fileReader();
-        }
+        if (text == null) {
+            if (urlText.contains("http")) {
+                text = fileDownloader.download();
+
+            } else {
+                text = fileDownloader.fileReader();
+            }
 //        https://ia800503.us.archive.org/19/items/josefinemutzenba31284gut/31284-8.txt
 //      text = fileDownloader.fileReader();
 //        System.out.println(text);
 
-        long end = System.currentTimeMillis();
 
-        outputWithDuration("Downloaded the Text ", start, end);
+            outputWithDuration("Downloaded the Text ", start, end);
 
-        start = System.currentTimeMillis();
-        String[] words = text.split("(\\s|\\W)+");
+            start = System.currentTimeMillis();
+            String[] words = text.split("(\\s|\\W)+");
 //        setWordsToLowerCase(words);
-        end = System.currentTimeMillis();
+            end = System.currentTimeMillis();
 
-        outputWithDuration("Text preprocessing took ", start, end);
+            outputWithDuration("Text preprocessing took ", start, end);
 
-        start = System.currentTimeMillis();
-        MarkovChain mc = new MarkovChain(words, WORDS_PER_STATE);
-        end = System.currentTimeMillis();
+            start = System.currentTimeMillis();
+            MarkovChain mc = new MarkovChain(words, WORDS_PER_STATE);
+            end = System.currentTimeMillis();
 
-        outputWithDuration("Building Markov chain took ", start, end);
+            outputWithDuration("Building Markov chain took ", start, end);
 
 
-        int sentenceLengthInWords = wortlaenge;
+            int sentenceLengthInWords = wortlaenge;
 
-        return concat(mc.compose(sentenceLengthInWords));
+            return concat(mc.compose(sentenceLengthInWords));
+        } else {
+            String[] words = text.split("(\\s|\\W)+");
+//        setWordsToLowerCase(words);
+            end = System.currentTimeMillis();
 
+            outputWithDuration("Text preprocessing took ", start, end);
+
+            start = System.currentTimeMillis();
+            MarkovChain mc = new MarkovChain(words, WORDS_PER_STATE);
+            end = System.currentTimeMillis();
+
+            outputWithDuration("Building Markov chain took ", start, end);
+
+
+            int sentenceLengthInWords = wortlaenge;
+
+            return concat(mc.compose(sentenceLengthInWords));
+
+        }
 
     }
     @FXML
