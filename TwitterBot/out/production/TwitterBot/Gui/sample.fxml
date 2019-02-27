@@ -29,13 +29,15 @@
                         <Label fx:id="Label_StatusUpdate" layoutX="449.0" layoutY="739.0" text="1" />
                         <Button fx:id="btn_setSentenceLength" layoutX="763.0" layoutY="147.0" mnemonicParsing="false" onAction="#setSatzlaenge" text="set Satzlänge" />
                          <Label fx:id="label_anzahlZeichen" layoutX="792.0" layoutY="84.0" text="0/240" />
-                        <Button fx:id="btn_setPeriod" layoutX="471.0" layoutY="515.0" mnemonicParsing="false" onAction="#setPeriod" text="periodisch Posten" />
-                        <TextField fx:id="periodTextField" layoutX="589.0" layoutY="515.0" />
-                        <Label layoutX="491.0" layoutY="426.0" text="periodisch posten" />
-                        <Label layoutX="592.0" layoutY="482.0" text="Wiederholungsdauer" />
-                        <Label layoutX="762.0" layoutY="482.0" text="1 Sekunde = 1000" />
-                        <Label layoutX="762.0" layoutY="507.0" text="1 Stunde = 3600000" />
-                        <Button layoutX="471.0" layoutY="555.0" mnemonicParsing="false" onAction="#stopPeriodTweet" text="Tweeten beenden" />
+                         <Button fx:id="btn_setPeriod" layoutX="471.0" layoutY="515.0" mnemonicParsing="false" onAction="#setPeriod" text="periodisch Posten" />
+                         <TextField fx:id="periodTextField" layoutX="589.0" layoutY="515.0" />
+                         <Label layoutX="491.0" layoutY="426.0" text="periodisch posten" />
+                         <Label layoutX="592.0" layoutY="482.0" text="Wiederholungsdauer" />
+                         <Label layoutX="762.0" layoutY="482.0" text="1 Sekunde = 1000" />
+                         <Label layoutX="762.0" layoutY="507.0" text="1 Stunde = 3600000" />
+                         <Button layoutX="471.0" layoutY="555.0" mnemonicParsing="false" onAction="#stopPeriodTweet" text="Tweeten beenden" />
+                        <Label fx:id="lbl_test" layoutX="749.0" layoutY="559.0" text="Label" />
+                        <Button fx:id="btn_test" layoutX="677.0" layoutY="555.0" mnemonicParsing="false" onAction="#test" text="Button" />
                      </children>
                   </AnchorPane>
             </content>
@@ -49,11 +51,11 @@
                         <Label layoutX="267.0" layoutY="154.0" text="setOAuthAccessToken" />
                         <Label layoutX="267.0" layoutY="197.0" text="setOAuthAccessTokenSecret" />
                          <Button fx:id="btn_setAuthKeys" layoutX="191.0" layoutY="64.0" mnemonicParsing="false" onAction="#setAuthOnStart" text="set Keys" />
-                        <TextField fx:id="setOAuthConsumerKey" layoutX="464.0" layoutY="64.0" prefHeight="25.0" prefWidth="418.0" />
-                        <TextField fx:id="setOAuthConsumerSecret" layoutX="464.0" layoutY="108.0" prefHeight="25.0" prefWidth="418.0" />
-                        <TextField fx:id="setOAuthAccessToken" layoutX="464.0" layoutY="150.0" prefHeight="25.0" prefWidth="419.0" />
-                        <TextField fx:id="setOAuthAccessTokenSecret" layoutX="464.0" layoutY="194.0" prefHeight="25.0" prefWidth="418.0" />
-                        <Button fx:id="btn_keysSpeichern" layoutX="155.0" layoutY="138.0" mnemonicParsing="false" onAction="#setProperties" text="Keys speichern" />
+                         <TextField fx:id="setOAuthConsumerKey" layoutX="464.0" layoutY="64.0" prefHeight="25.0" prefWidth="418.0" />
+                         <TextField fx:id="setOAuthConsumerSecret" layoutX="464.0" layoutY="108.0" prefHeight="25.0" prefWidth="418.0" />
+                         <TextField fx:id="setOAuthAccessToken" layoutX="464.0" layoutY="150.0" prefHeight="25.0" prefWidth="419.0" />
+                         <TextField fx:id="setOAuthAccessTokenSecret" layoutX="464.0" layoutY="194.0" prefHeight="25.0" prefWidth="418.0" />
+                         <Button fx:id="btn_keysSpeichern" layoutX="155.0" layoutY="138.0" mnemonicParsing="false" onAction="#setProperties" text="Keys speichern" />
                      </children></AnchorPane>
             </content>
           </Tab>

@@ -27,7 +27,7 @@ public static void sendTweet(String Text ){
     try {
         if (Text.length() <= 240) {
             Status status = twitter.updateStatus(Text);
-            System.out.println("Successfully updated the status.");
+            Controller.Label_StatusUpdate.setText("Successfully updated the status.");
         } else {
             splitTweets(Text);
 

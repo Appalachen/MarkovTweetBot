@@ -40,6 +40,9 @@
                          <Label layoutX="762.0" layoutY="507.0" text="1 Stunde = 3600000"/>
                          <Button layoutX="471.0" layoutY="555.0" mnemonicParsing="false" onAction="#stopPeriodTweet"
                                  text="Tweeten beenden"/>
+                         <Label fx:id="lbl_test" layoutX="749.0" layoutY="559.0" text="Label"/>
+                         <Button fx:id="btn_test" layoutX="677.0" layoutY="555.0" mnemonicParsing="false"
+                                 onAction="#test" text="Button"/>
                      </children>
                   </AnchorPane>
             </content>

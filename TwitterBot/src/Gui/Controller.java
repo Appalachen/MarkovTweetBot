@@ -13,19 +13,20 @@ import java.io.*;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Timer;
+import java.util.TimerTask;
 
-public class Controller implements ControllerInterface {
+public class Controller implements Runnable {
 
 
     public TextArea MarkovTextField;
-    public Button btn_sendTweet;
+    public static Button btn_sendTweet;
 
 
     public TextField AnzahlDerWoerter;
     public TextField UrlTextFeld;
     public Button btn_setUrlButton;
     public Button btn_postOnTwitter;
-    public Label Label_StatusUpdate;
+    public static Label Label_StatusUpdate = new Label();
 
 
     public Button btn_setAuthKeys;
@@ -40,13 +41,14 @@ public class Controller implements ControllerInterface {
     public int anzahlDerWoertertest;
     public String markovFunctionalityTest;
     public Button btn_setPeriod;
+    public Label lbl_test;
     boolean flag = true;
     static MarkovFunctionality markovFunctionality = new MarkovFunctionality();
 
     {
     }
 
-    public void markovGenerateButton(javafx.event.ActionEvent actionEvent) {
+    public void markovGenerateButton() {
 
         if (Integer.parseInt(AnzahlDerWoerter.getText()) < 3) {
             MarkovTextField.setText("Error: anzahl der Wörter eingeben!");
@@ -62,7 +64,7 @@ public class Controller implements ControllerInterface {
 
         MarkovTextField.setText(text);
         checkSentenceLength01();
-        System.out.println("Test");
+
     }
 
     public void checkSentenceLength01() {
@@ -95,7 +97,7 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    @Override
+
     public void setSatzlaenge() {
         if (AnzahlDerWoerter.getText().matches("\\d{1,3}") && Integer.parseInt(AnzahlDerWoerter.getText()) >= MarkovFunctionality.WORDS_PER_STATE) {
             markovFunctionality.wortlaenge = Integer.parseInt(AnzahlDerWoerter.getText());
@@ -132,7 +134,7 @@ public class Controller implements ControllerInterface {
         }
     }
 
-    @Override
+
     public void setProperties() {
         Properties prop = new Properties();
 
@@ -159,25 +161,44 @@ public class Controller implements ControllerInterface {
 
     }
 
+    public void setPeriod() {
+        Controller controller = new Controller();
+        controller.periodTextField = periodTextField;
+        controller.MarkovTextField = MarkovTextField;
+        controller.AnzahlDerWoerter = AnzahlDerWoerter;
+        controller.UrlTextFeld = UrlTextFeld;
+        controller.label_anzahlZeichen = label_anzahlZeichen;
+        controller.flag = flag;
+        controller.checkSentenceLength01();
+        (new Thread(controller)).start();
+
+    }
+
+
     @Override
-    public void setPeriod(ActionEvent actionEvent) {
+    public void run() {
         Long period = Long.parseLong(periodTextField.getText());
         flag = true;
         long timerstart = System.currentTimeMillis();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+
+            }
+
+        };
         if (!periodTextField.getText().isEmpty() && period >= 1000) {
 
-            do {
-                if (timerstart + period == System.currentTimeMillis()) {
-                    markovGenerateButton();
-                    TwitterFunctionality.sendTweet(MarkovTextField.getText());
-                    period += period;
+            if (flag == true) {
+                markovGenerateButton();
+                TwitterFunctionality.sendTweet(MarkovTextField.getText());
+                try {
+                    Thread.sleep(period);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            }
-            while (flag == true);
-            {
-//               System.currentTimeMillis()<System.currentTimeMillis()+period||
-
-
+            } else {
+                Thread.currentThread().stop();
             }
 
 
@@ -187,26 +208,10 @@ public class Controller implements ControllerInterface {
     }
 
     public void stopPeriodTweet() {
-        flag ^= true;
+        flag = false;
     }
 
-    @Override
-    public void markovGenerateButton() {
-        if (Integer.parseInt(AnzahlDerWoerter.getText()) < 3) {
-            MarkovTextField.setText("Error: anzahl der Wörter eingeben!");
-
-        }
-
-        if (UrlTextFeld.getText().isEmpty()) {
-            UrlTextFeld.setText("Error: gültige Url eingeben!");
-        }
-
-        String text = markovFunctionality.getGeneratedText();
 
 
-        MarkovTextField.setText(text);
-        System.out.println("Test");
-    }
 
 }
-//

@@ -75,7 +75,7 @@ public class MarkovFunctionality {
     }
     @FXML
     private static void outputWithDuration(String text, long start, long end) {
-        System.out.println(text + (end - start) + " milliseconds.");
+        Controller.Label_StatusUpdate.setText(text + (end - start) + " milliseconds.");
     }
 
     private static String concat(String... strings) {
