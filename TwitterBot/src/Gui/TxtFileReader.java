@@ -2,8 +2,9 @@ package Gui;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
-import java.util.Scanner;
+
 import java.util.stream.Collectors;
 
 public class TxtFileReader {
@@ -21,10 +22,9 @@ public class TxtFileReader {
         try
         {
             String fileName=urlText;
-            File file = new File(fileName) ;
+            File file = new File(fileName);
             fr = new FileReader(file);
             br = new BufferedReader(fr) ;
-
             String line ;
             StringBuffer sb = new StringBuffer();
             String sep = System.getProperty("line.separator");
@@ -32,13 +32,13 @@ public class TxtFileReader {
             while( (line=br.readLine()) != null )
                 sb.append(line+sep) ;
 
-            System.out.println(sb);  //ganze Datei ausgegeben
             text=sb.toString();
         }
 
         catch(IOException ex)
         {
             System.out.println(ex);
+
         }
         finally
         {
@@ -56,16 +56,18 @@ public class TxtFileReader {
     }
 
     public String download() {
+        URL url;
         try {
-            URL url = new URL(urlText);
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+            url = new URL(urlText);
 
-                return reader.lines().collect(Collectors.joining(" "));
-            } catch (IOException ex) {
-                throw new RuntimeException("IO failed", ex);
-            }
         } catch (MalformedURLException ex) {
             throw new IllegalStateException("Bad URL", ex);
+        }
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8))) {
+
+            return reader.lines().collect(Collectors.joining(" "));
+        } catch (IOException ex) {
+            throw new RuntimeException("IO failed", ex);
         }
     }
 }

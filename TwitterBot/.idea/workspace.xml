@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="TwitterBot:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added new functionalities">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Threads now complete, some refactoring">
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TwitterBot/Gui/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TwitterBot/Gui/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TwitterBot/Gui/MarkovFunctionality.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TwitterBot/Gui/MarkovFunctionality.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TwitterBot/Gui/TwitterFunctionality.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TwitterBot/Gui/TwitterFunctionality.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TwitterBot/Gui/TxtFileReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TwitterBot/Gui/TxtFileReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TwitterBot/Gui/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TwitterBot/Gui/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gui/ControllerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gui/KeystoreLoader.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/MarkovFunctionality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/MarkovFunctionality.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gui/PeriodThread.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/TwitterFunctionality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/TwitterFunctionality.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gui/TxtFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/TxtFileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/sample.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -84,22 +94,66 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Gui/sample.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="38" column="42" lean-forward="true" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+            <state relative-caret-position="119">
+              <caret line="21" column="124" selection-start-line="21" selection-start-column="124" selection-end-line="21" selection-end-column="124" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="182" column="13" lean-forward="true" selection-start-line="182" selection-start-column="13" selection-end-line="182" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Gui/Controller.java">
+        <entry file="file://$PROJECT_DIR$/src/Gui/MarkovFunctionality.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="170" column="43" selection-start-line="170" selection-start-column="43" selection-end-line="170" selection-end-column="43" />
+            <state relative-caret-position="298">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/TxtFileReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7125#7126#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/TwitterFunctionality.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Gui/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,8 +178,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Appalachen &lt;carlzepke@googlemail.com&gt;" />
         <option value="Appalachen" />
+        <option value="Appalachen &lt;carlzepke@googlemail.com&gt;" />
         <option value="BotSlyer" />
         <option value="Botslyer" />
       </list>
@@ -147,12 +201,12 @@
         <option value="$PROJECT_DIR$/src/Gui/ScheduledTask.java" />
         <option value="$PROJECT_DIR$/src/Gui/SchedulerMain.java" />
         <option value="$PROJECT_DIR$/src/Gui/MarkovChain.java" />
-        <option value="$PROJECT_DIR$/src/Gui/TxtFileReader.java" />
         <option value="$PROJECT_DIR$/src/Gui/ControllerInterface.java" />
         <option value="$PROJECT_DIR$/src/Gui/PeriodThread.java" />
+        <option value="$PROJECT_DIR$/src/Gui/TxtFileReader.java" />
+        <option value="$PROJECT_DIR$/src/Gui/Controller.java" />
         <option value="$PROJECT_DIR$/src/Gui/TwitterFunctionality.java" />
         <option value="$PROJECT_DIR$/src/Gui/MarkovFunctionality.java" />
-        <option value="$PROJECT_DIR$/src/Gui/Controller.java" />
       </list>
     </option>
   </component>
@@ -163,10 +217,10 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="width" value="1933" />
-    <option name="height" value="1038" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="1133" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -177,8 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,10 +249,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Gui" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TwitterBot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -215,14 +273,14 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last.edited.regexp" value="Sample Text" />
-    <property name="last_opened_file_path" value="C:/Work/Git/CustomerPortal-root" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Berufsschule/MarkovBotTwitter" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.uml" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -347,7 +405,16 @@
       <workItem from="1550822545986" duration="13705000" />
       <workItem from="1551077329364" duration="4223000" />
       <workItem from="1551165773904" duration="8583000" />
-      <workItem from="1551254135105" duration="10075000" />
+      <workItem from="1551254135105" duration="12214000" />
+      <workItem from="1551336374266" duration="6464000" />
+      <workItem from="1551682796663" duration="2490000" />
+      <workItem from="1551771942703" duration="2971000" />
+      <workItem from="1551790030168" duration="4529000" />
+      <workItem from="1551854873675" duration="2523000" />
+      <workItem from="1551863557844" duration="1195000" />
+      <workItem from="1551943803612" duration="1404000" />
+      <workItem from="1552374390129" duration="9779000" />
+      <workItem from="1552461024085" duration="9303000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1549276169573</created>
@@ -370,11 +437,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551173940421</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Threads now complete, some refactoring">
+      <created>1551272868222</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1551272868222</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137137000" />
+    <option name="totallyTimeSpent" value="179934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -386,18 +460,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1933" height="1038" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1526962" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17217484" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27734807" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38674033" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26435536" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2426869" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
@@ -406,12 +480,13 @@
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32928178" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32486188" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32822758" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3217768" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" />
       <window_info anchor="bottom" id="Terminal" order="16" weight="0.32928178" />
       <window_info anchor="bottom" id="Duplicate detector" order="17" weight="0.32936078" />
+      <window_info anchor="bottom" id="SonarLint" order="18" weight="0.3445287" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.2497332" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -422,6 +497,41 @@
       <window_info anchor="right" id="Maven" order="7" weight="0.32977587" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17217484" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2308534" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38674033" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32928178" />
+      <window_info anchor="bottom" id="Application Servers" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32928178" />
+      <window_info anchor="bottom" id="Problems" order="9" />
+      <window_info anchor="bottom" id="Changes" order="10" />
+      <window_info anchor="bottom" id="Profiler" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32822758" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32275712" />
+      <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="15" />
+      <window_info anchor="bottom" id="Terminal" order="16" weight="0.32928178" />
+      <window_info anchor="bottom" id="Duplicate detector" order="17" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="SonarLint" order="18" visible="true" weight="0.3445287" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.2497332" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="JetGradle" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32977587" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.32977587" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -432,53 +542,36 @@
     <MESSAGE value="Added a few corrections" />
     <MESSAGE value="test" />
     <MESSAGE value="Added new functionalities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new functionalities" />
+    <MESSAGE value="Threads now complete, some refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Threads now complete, some refactoring" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Gui/TwitterFunctionality.java</url>
-          <line>17</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Gui/TwitterFunctionality.java</url>
-          <line>46</line>
-          <properties />
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Gui/TwitterFunctionality.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Gui/Controller.java</url>
-          <line>178</line>
+          <line>184</line>
           <properties />
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Gui/Controller.java</url>
-          <line>52</line>
-          <properties />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Gui/Controller.java</url>
-          <line>70</line>
+          <line>72</line>
           <properties />
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Gui/Controller.java</url>
-          <line>212</line>
+          <line>209</line>
           <properties />
           <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Gui/MarkovFunctionality.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -495,9 +588,6 @@
           <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AuthKeys.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/res/resources/images/AuthKeys.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -536,32 +626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/SchedulerMain.java" />
     <entry file="file://$PROJECT_DIR$/src/Gui/ScheduledTask.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/ControllerInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ressource/prop.xml">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/com/sun/glass/ui/InvokeLaterDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -629,16 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="1657" selection-start-line="1657" selection-end-line="1657" />
-          <folding>
-            <element signature="e#66921#66922#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/MarkovChain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1461">
@@ -649,47 +705,160 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/PeriodThread.java">
+    <entry file="file://$PROJECT_DIR$/src/Gui/PeriodThread.java" />
+    <entry file="file://$PROJECT_DIR$/src/Gui/KeystoreLoader.java" />
+    <entry file="file://$PROJECT_DIR$/AuthKeys.txt" />
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TwitterBot.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="272">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/MarkovFunctionality.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runnable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="452">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="" y="">com</node>
+            <node x="" y="">res</node>
+            <node x="" y="">netscape</node>
+            <node x="" y="">oracle</node>
+            <node x="" y="">org</node>
+            <node x="" y="">twitter4j</node>
+            <node x="" y="">main</node>
+            <node x="" y="">sun</node>
+            <node x="" y="">META-INF</node>
+            <node x="" y="">jdk</node>
+            <node x="" y="">groovyjarjarasm</node>
+            <node x="" y="">java</node>
+            <node x="" y="">groovy</node>
+            <node x="" y="">javax</node>
+            <node x="" y="">ressource</node>
+            <node x="" y="">Gui</node>
+            <node x="" y="">groovyjarjarcommonscli</node>
+            <node x="" y="">javafx</node>
+            <node x="" y="">groovyjarjarantlr</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="234.0" y="237.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/ControllerInterface.java" />
+    <entry file="uml://JAVA/Gui">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>Gui</OriginalElement>
+          <nodes>
+            <node x="223.75" y="1517.0">Gui.TwitterFunctionality</node>
+            <node x="198.25" y="667.0">Gui.Controller</node>
+            <node x="375.0" y="110.0">Gui.TxtFileReader</node>
+            <node x="192.75" y="389.0">Gui.MarkovFunctionality</node>
+            <node x="601.0" y="0.0">Gui.Main</node>
+            <node x="0.0" y="0.0">Gui.MarkovChain</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="Gui.TwitterFunctionality" target="Gui.Controller">
+              <point x="0.0" y="-114.5" />
+              <point x="0.0" y="400.0" />
+            </edge>
+            <edge source="Gui.MarkovFunctionality" target="Gui.Controller">
+              <point x="120.39999999999998" y="114.0" />
+              <point x="463.65" y="642.0" />
+              <point x="459.25" y="642.0" />
+              <point x="116.0" y="-400.0" />
+            </edge>
+            <edge source="Gui.MarkovFunctionality" target="Gui.TxtFileReader">
+              <point x="37.625" y="-114.0" />
+              <point x="380.875" y="364.0" />
+              <point x="420.25" y="364.0" />
+              <point x="-45.25" y="59.5" />
+            </edge>
+            <edge source="Gui.MarkovFunctionality" target="Gui.MarkovChain">
+              <point x="-37.625" y="-114.0" />
+              <point x="305.625" y="364.0" />
+              <point x="266.25" y="364.0" />
+              <point x="88.75" y="169.5" />
+            </edge>
+            <edge source="Gui.Controller" target="Gui.TwitterFunctionality">
+              <point x="96.66666666666669" y="400.0" />
+              <point x="439.9166666666667" y="1492.0" />
+              <point x="422.9166666666667" y="1492.0" />
+              <point x="79.66666666666669" y="-114.5" />
+            </edge>
+            <edge source="Gui.Controller" target="Gui.MarkovFunctionality">
+              <point x="-116.0" y="-400.0" />
+              <point x="227.25" y="642.0" />
+              <point x="222.85" y="642.0" />
+              <point x="-120.4" y="114.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.6041816870944484" x="-350.0" y="301.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/TxtFileReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="1037">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui/KeystoreLoader.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="54" />
+        <state relative-caret-position="197">
+          <caret line="1773" selection-start-line="1773" selection-end-line="1773" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#66921#66922#0" expanded="true" />
+            <element signature="e#66966#66967#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/TwitterFunctionality.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+        <state relative-caret-position="353">
+          <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -697,21 +866,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="38" column="42" lean-forward="true" selection-start-line="38" selection-start-column="42" selection-end-line="38" selection-end-column="42" />
+        <state relative-caret-position="119">
+          <caret line="21" column="124" selection-start-line="21" selection-start-column="124" selection-end-line="21" selection-end-column="124" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Gui/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="170" column="43" selection-start-line="170" selection-start-column="43" selection-end-line="170" selection-end-column="43" />
+        <state relative-caret-position="374">
+          <caret line="182" column="13" lean-forward="true" selection-start-line="182" selection-start-column="13" selection-end-line="182" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7125#7126#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Gui/MarkovFunctionality.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>
@@ -720,12 +895,20 @@
     <states>
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
-          <artifact-editor />
-          <last-edited>JavaFXApp</last-edited>
+          <artifact-editor>
+            <show-content>
+              <type id="library" />
+              <type id="jpa-descriptors" />
+              <type id="javaee-facet-resources" />
+              <type id="artifact" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>TwitterBot:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

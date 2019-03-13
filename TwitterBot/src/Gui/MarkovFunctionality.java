@@ -2,25 +2,22 @@ package Gui;
 
 import javafx.fxml.FXML;
 
-import java.io.IOException;
-import java.util.Scanner;
 
-public class MarkovFunctionality {
+class MarkovFunctionality {
 
-    protected static final int WORDS_PER_STATE = 3;
-    public String urlText;
-    public int wortlaenge;
-    public String text = null;
-    public long end = System.currentTimeMillis();
+    static final int WORDS_PER_STATE = 3;
+    String urlText;
+    int wortlaenge;
+    protected String text = null;
+    private long end = System.currentTimeMillis();
+    static Controller controller = new Controller();
 
-
-    //Test
-    @FXML
-    public String getGeneratedText() {
+    String getGeneratedText() {
         long start = System.currentTimeMillis();
 
         TxtFileReader fileDownloader =
                 new TxtFileReader(urlText);
+
         if (text == null) {
             if (urlText.contains("http")) {
                 text = fileDownloader.download();
@@ -28,6 +25,7 @@ public class MarkovFunctionality {
             } else {
                 text = fileDownloader.fileReader();
             }
+        }
 //        https://ia800503.us.archive.org/19/items/josefinemutzenba31284gut/31284-8.txt
 //      text = fileDownloader.fileReader();
 //        System.out.println(text);
@@ -37,7 +35,6 @@ public class MarkovFunctionality {
 
             start = System.currentTimeMillis();
             String[] words = text.split("(\\s|\\W)+");
-//        setWordsToLowerCase(words);
             end = System.currentTimeMillis();
 
             outputWithDuration("Text preprocessing took ", start, end);
@@ -52,30 +49,11 @@ public class MarkovFunctionality {
             int sentenceLengthInWords = wortlaenge;
 
             return concat(mc.compose(sentenceLengthInWords));
-        } else {
-            String[] words = text.split("(\\s|\\W)+");
-//        setWordsToLowerCase(words);
-            end = System.currentTimeMillis();
-
-            outputWithDuration("Text preprocessing took ", start, end);
-
-            start = System.currentTimeMillis();
-            MarkovChain mc = new MarkovChain(words, WORDS_PER_STATE);
-            end = System.currentTimeMillis();
-
-            outputWithDuration("Building Markov chain took ", start, end);
-
-
-            int sentenceLengthInWords = wortlaenge;
-
-            return concat(mc.compose(sentenceLengthInWords));
-
         }
 
-    }
     @FXML
     private static void outputWithDuration(String text, long start, long end) {
-        Controller.Label_StatusUpdate.setText(text + (end - start) + " milliseconds.");
+        controller.Label_StatusUpdate.setText(text + (end - start) + " milliseconds.");
     }
 
     private static String concat(String... strings) {
@@ -91,12 +69,4 @@ public class MarkovFunctionality {
         return sb.toString();
     }
 
-    private static void setWordsToLowerCase(String[] words) {
-        for (int i = 0; i < words.length; ++i) {
-            if ( i<=1){
-                words[i]=words[i].toUpperCase();
-            }
-            else {words[i] = words[i].toLowerCase();}
-        }
-    }
 }

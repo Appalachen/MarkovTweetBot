@@ -1,23 +1,17 @@
 package Gui;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import java.beans.XMLEncoder;
 import java.io.*;
-import java.util.Date;
 import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import static Gui.TwitterFunctionality.sendTweet;
 
 public class Controller implements Runnable {
 
-
+    private static final String Prop_Src = "C://Users//All Users//props.xml";
     public TextArea MarkovTextField;
     public static Button btn_sendTweet;
 
@@ -26,7 +20,16 @@ public class Controller implements Runnable {
     public TextField UrlTextFeld;
     public Button btn_setUrlButton;
     public Button btn_postOnTwitter;
-    public static Label Label_StatusUpdate = new Label();
+
+    public Label getLabel_StatusUpdate() {
+        return Label_StatusUpdate;
+    }
+
+    public void setLabel_StatusUpdate(String label_StatusUpdate) {
+        Label_StatusUpdate.setText(label_StatusUpdate);
+    }
+
+    public Label Label_StatusUpdate = new Label();
 
 
     public Button btn_setAuthKeys;
@@ -45,8 +48,7 @@ public class Controller implements Runnable {
     boolean flag = true;
     static MarkovFunctionality markovFunctionality = new MarkovFunctionality();
 
-    {
-    }
+
 
     public void markovGenerateButton() {
 
@@ -78,23 +80,25 @@ public class Controller implements Runnable {
         label_anzahlZeichen.setText(length + "/240");
     }
 
-    public void postOnTwitterButton(ActionEvent actionEvent) {
+    public void postOnTwitterButton() {
         if (MarkovTextField.getText().length() > 240) {
             Label_StatusUpdate.setText("Tweetlänge überschritten!");
         }
-        TwitterFunctionality twitterFunctionality = new TwitterFunctionality();
-        twitterFunctionality.sendTweet(MarkovTextField.getText());
+        sendTweet(MarkovTextField.getText());
     }
 
     public void setUrl() {
+
         if (UrlTextFeld.getText().contains("http") || UrlTextFeld.getText().contains(".txt")) {
             markovFunctionality.urlText = UrlTextFeld.getText();
             markovFunctionalityTest = UrlTextFeld.getText();
-
+            markovFunctionality.text = null;
             Label_StatusUpdate.setText("Url is set");
         } else {
             Label_StatusUpdate.setText("Url konnte nicht gesetzt werden");
         }
+
+
     }
 
 
@@ -103,7 +107,7 @@ public class Controller implements Runnable {
             markovFunctionality.wortlaenge = Integer.parseInt(AnzahlDerWoerter.getText());
             anzahlDerWoertertest = Integer.parseInt(AnzahlDerWoerter.getText());
 
-            Label_StatusUpdate.setText("Satzlaenge erfolgreich gesetzt");
+            setLabel_StatusUpdate("Satzlaenge erfolgreich gesetzt");
         } else {
             Label_StatusUpdate.setText("Bitte nur 1- bis 3-Stellige Zahlen eingeben die größer als " + MarkovFunctionality.WORDS_PER_STATE + " sind");
         }
@@ -116,7 +120,7 @@ public class Controller implements Runnable {
     public void setAuthOnStart() {
         Properties props = new Properties();
         try {
-            props.loadFromXML(new FileInputStream("C://Users//All Users//props.xml"));
+            props.loadFromXML(new FileInputStream(Prop_Src));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -139,22 +143,21 @@ public class Controller implements Runnable {
         Properties prop = new Properties();
 
         try {
-            XMLEncoder encoder = new XMLEncoder(new FileOutputStream("C://Users//All Users//props.xml"));
+            XMLEncoder encoder = new XMLEncoder(new FileOutputStream(Prop_Src));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            prop.loadFromXML(new FileInputStream("C://Users//All Users//props.xml"));
+            prop.loadFromXML(new FileInputStream(Prop_Src));
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        setAuthKeys();
         prop.setProperty("OAuthAccessToken", setOAuthAccessToken.getText());
         prop.setProperty("OAuthAccessTokenSecret", setOAuthAccessTokenSecret.getText());
         prop.setProperty("OAuthConsumerKey", setOAuthConsumerKey.getText());
         prop.setProperty("OAuthConsumerSecret", setOAuthConsumerSecret.getText());
         try {
-            prop.storeToXML(new FileOutputStream("C://Users//All Users//props.xml"), "comment");
+            prop.storeToXML(new FileOutputStream(Prop_Src), "OAuthKeys");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -177,21 +180,14 @@ public class Controller implements Runnable {
 
     @Override
     public void run() {
-        Long period = Long.parseLong(periodTextField.getText());
-        flag = true;
-        long timerstart = System.currentTimeMillis();
-        TimerTask tt = new TimerTask() {
-            @Override
-            public void run() {
+        Long period = Long.parseLong(periodTextField.getText()) * 60000;
 
-            }
 
-        };
         if (!periodTextField.getText().isEmpty() && period >= 1000) {
 
             if (flag == true) {
                 markovGenerateButton();
-                TwitterFunctionality.sendTweet(MarkovTextField.getText());
+                sendTweet(MarkovTextField.getText());
                 try {
                     Thread.sleep(period);
                 } catch (InterruptedException e) {
@@ -208,7 +204,9 @@ public class Controller implements Runnable {
     }
 
     public void stopPeriodTweet() {
+        Thread.currentThread().interrupt();
         flag = false;
+        Label_StatusUpdate.setText("Periodisches tweeten abgebrochen.");
     }
 
 

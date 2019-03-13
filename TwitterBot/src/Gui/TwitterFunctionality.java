@@ -8,11 +8,13 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterFunctionality {
-
+    private TwitterFunctionality() {
+    }
     protected static String OAuthConsumerKey;
     protected static String OAuthConsumerSecret;
     protected static String OAuthAccessToken;
     protected static String OAuthAccessTokenSecret;
+    static Controller controller = new Controller();
 @FXML
 public static void sendTweet(String Text ){
     ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -26,8 +28,8 @@ public static void sendTweet(String Text ){
     Twitter twitter = tf.getInstance();
     try {
         if (Text.length() <= 240) {
-            Status status = twitter.updateStatus(Text);
-            Controller.Label_StatusUpdate.setText("Successfully updated the status.");
+            twitter.updateStatus(Text);
+            controller.setLabel_StatusUpdate("Successfully updated the status.");
         } else {
             splitTweets(Text);
 
@@ -39,12 +41,12 @@ public static void sendTweet(String Text ){
     }
 }
 
-    public static void splitTweets(String text) {
+    private static void splitTweets(String text) {
         int numberOfTweets = text.length() / 240;
-        System.out.println(numberOfTweets);
+        controller.setLabel_StatusUpdate(Integer.toString(numberOfTweets));
         int restForLastTweet = text.length() % 240;
         for (int i = 0; i < numberOfTweets; i++) {
-            String subText = text.substring(0 + 240 * i, 240 + 240 * i);
+            String subText = text.substring(240 * i, 240 + 240 * i);
             sendTweet(subText);
 
         }
