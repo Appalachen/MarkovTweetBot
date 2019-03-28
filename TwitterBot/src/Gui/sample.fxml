@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.Controller">
   <items>
@@ -33,13 +34,17 @@
                          <Button fx:id="btn_setPeriod" layoutX="409.0" layoutY="515.0" mnemonicParsing="false"
                                  onAction="#setPeriod" text="periodisch Posten"/>
                          <TextField fx:id="periodTextField" layoutX="586.0" layoutY="515.0"/>
-                         <Label layoutX="491.0" layoutY="426.0" text="periodisch posten"/>
+                         <Label layoutX="409.0" layoutY="376.0" text="Periodisch posten">
+                             <font>
+                                 <Font name="Times New Roman Bold" size="16.0"/>
+                             </font>
+                         </Label>
                          <Label layoutX="592.0" layoutY="482.0" text="Wiederholungsdauer"/>
                          <Button layoutX="408.0" layoutY="555.0" mnemonicParsing="false" onAction="#stopPeriodTweet"
                                  text="Tweeten beenden"/>
                          <Button fx:id="btn_setSentenceLength" layoutX="768.0" layoutY="149.0" mnemonicParsing="false"
                                  onAction="#setSatzlaenge" text="set Satzlänge"/>
-                         <Label layoutX="739.0" layoutY="519.0" text="in Minuten"/>
+                         <Label layoutX="788.0" layoutY="519.0" prefHeight="18.0" prefWidth="65.0" text="in Minuten"/>
                      </children>
                   </AnchorPane>
             </content>

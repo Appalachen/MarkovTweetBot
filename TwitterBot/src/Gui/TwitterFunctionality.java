@@ -1,22 +1,25 @@
 package Gui;
 
 import javafx.fxml.FXML;
-import twitter4j.Status;
+import twitter4j.ResponseList;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.util.List;
+
 public class TwitterFunctionality {
     private TwitterFunctionality() {
     }
-    protected static String OAuthConsumerKey;
-    protected static String OAuthConsumerSecret;
-    protected static String OAuthAccessToken;
-    protected static String OAuthAccessTokenSecret;
+
+    static String OAuthConsumerKey;
+    static String OAuthConsumerSecret;
+    static String OAuthAccessToken;
+    static String OAuthAccessTokenSecret;
     static Controller controller = new Controller();
 @FXML
-public static void sendTweet(String Text ){
+static void sendTweet(String Text) {
     ConfigurationBuilder cb = new ConfigurationBuilder();
 
     cb.setDebugEnabled(true)
@@ -29,6 +32,10 @@ public static void sendTweet(String Text ){
     try {
         if (Text.length() <= 240) {
             twitter.updateStatus(Text);
+            ResponseList test = twitter.getUserTimeline("botslyer");
+            String lel = test.get(4).toString();
+            System.out.println(lel);
+
             controller.setLabel_StatusUpdate("Successfully updated the status.");
         } else {
             splitTweets(Text);

@@ -16,7 +16,15 @@ public class Controller implements Runnable {
     public static Button btn_sendTweet;
 
 
-    public TextField AnzahlDerWoerter;
+    public TextField getAnzahlDerWoerter() {
+        return AnzahlDerWoerter;
+    }
+
+    public void setAnzahlDerWoerter(String anzahlDerWoerter) {
+        AnzahlDerWoerter.setText(anzahlDerWoerter);
+    }
+
+    public TextField AnzahlDerWoerter = new TextField();
     public TextField UrlTextFeld;
     public Button btn_setUrlButton;
     public Button btn_postOnTwitter;
@@ -25,7 +33,7 @@ public class Controller implements Runnable {
         return Label_StatusUpdate;
     }
 
-    public void setLabel_StatusUpdate(String label_StatusUpdate) {
+    void setLabel_StatusUpdate(String label_StatusUpdate) {
         Label_StatusUpdate.setText(label_StatusUpdate);
     }
 
@@ -41,8 +49,8 @@ public class Controller implements Runnable {
     public TextField setOAuthAccessTokenSecret;
     public Button btn_keysSpeichern;
     public TextField periodTextField;
-    public int anzahlDerWoertertest;
-    public String markovFunctionalityTest;
+    int anzahlDerWoertertest;
+    String markovFunctionalityTest;
     public Button btn_setPeriod;
     public Label lbl_test;
     boolean flag = true;
@@ -52,21 +60,17 @@ public class Controller implements Runnable {
 
     public void markovGenerateButton() {
 
-        if (Integer.parseInt(AnzahlDerWoerter.getText()) < 3) {
-            MarkovTextField.setText("Error: anzahl der Wörter eingeben!");
-
+        if (getAnzahlDerWoerter().getText().isEmpty() || !getAnzahlDerWoerter().getText().matches("^\\d{1,3}")) {
+            setLabel_StatusUpdate("bitte Zahlen in das Feld setzen");
+        } else if (!(Integer.parseInt(AnzahlDerWoerter.getText()) < 3)) {
+            setLabel_StatusUpdate("bitte Zahlen größer als drei angeben");
+        } else if (UrlTextFeld.getText().isEmpty()) {
+            setLabel_StatusUpdate("Bitte eine gültige Url eingeben");
+        } else {
+            String text = markovFunctionality.getGeneratedText();
+            MarkovTextField.setText(text);
+            checkSentenceLength01();
         }
-
-        if (UrlTextFeld.getText().isEmpty()) {
-            UrlTextFeld.setText("Error: gültige Url eingeben!");
-        }
-
-        String text = markovFunctionality.getGeneratedText();
-
-
-        MarkovTextField.setText(text);
-        checkSentenceLength01();
-
     }
 
     public void checkSentenceLength01() {
@@ -81,10 +85,13 @@ public class Controller implements Runnable {
     }
 
     public void postOnTwitterButton() {
-        if (MarkovTextField.getText().length() > 240) {
-            Label_StatusUpdate.setText("Tweetlänge überschritten!");
+        if (MarkovTextField.getText().isEmpty()) {
+            Label_StatusUpdate.setText("irgendwas muss im Textfeld stehen");
+        } else if (setOAuthConsumerSecret.getText().isEmpty() || setOAuthConsumerKey.getText().isEmpty() || setOAuthAccessTokenSecret.getText().isEmpty() || setOAuthAccessToken.getText().isEmpty()) {
+            setLabel_StatusUpdate("deine Authentifizierungskeys fehlen");
+        } else {
+            sendTweet(MarkovTextField.getText());
         }
-        sendTweet(MarkovTextField.getText());
     }
 
     public void setUrl() {
@@ -144,8 +151,11 @@ public class Controller implements Runnable {
 
         try {
             XMLEncoder encoder = new XMLEncoder(new FileOutputStream(Prop_Src));
+            encoder.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+
         }
         try {
             prop.loadFromXML(new FileInputStream(Prop_Src));
@@ -165,27 +175,31 @@ public class Controller implements Runnable {
     }
 
     public void setPeriod() {
-        Controller controller = new Controller();
-        controller.periodTextField = periodTextField;
-        controller.MarkovTextField = MarkovTextField;
-        controller.AnzahlDerWoerter = AnzahlDerWoerter;
-        controller.UrlTextFeld = UrlTextFeld;
-        controller.label_anzahlZeichen = label_anzahlZeichen;
-        controller.flag = flag;
-        controller.checkSentenceLength01();
-        (new Thread(controller)).start();
-
+        if (!periodTextField.getText().isEmpty() && periodTextField.getText().matches("\\d{1,3}")) {
+            Controller controller = new Controller();
+            controller.periodTextField = periodTextField;
+            controller.MarkovTextField = MarkovTextField;
+            controller.AnzahlDerWoerter = AnzahlDerWoerter;
+            controller.UrlTextFeld = UrlTextFeld;
+            controller.label_anzahlZeichen = label_anzahlZeichen;
+            controller.flag = flag;
+            controller.checkSentenceLength01();
+            (new Thread(controller)).start();
+        } else {
+            setLabel_StatusUpdate("bitte eine gültige Zeit eingeben!");
+        }
     }
 
 
     @Override
     public void run() {
-        Long period = Long.parseLong(periodTextField.getText()) * 60000;
+        Long period = Long.parseLong(periodTextField.getText());
 
 
         if (!periodTextField.getText().isEmpty() && period >= 1000) {
 
-            if (flag == true) {
+            while (flag == true) {
+
                 markovGenerateButton();
                 sendTweet(MarkovTextField.getText());
                 try {
@@ -193,13 +207,11 @@ public class Controller implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            } else {
-                Thread.currentThread().stop();
             }
-
+            Thread.currentThread().stop();
 
         } else {
-            Label_StatusUpdate.setText("please fill in a correct number in Milliseconds in the period Field!");
+            Label_StatusUpdate.setText("please fill in a correct number in Minutes in the period Field!");
         }
     }
 

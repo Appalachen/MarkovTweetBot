@@ -1,4 +1,8 @@
 package Gui;
+
+import com.sun.org.apache.bcel.internal.generic.GOTO;
+import com.sun.org.apache.bcel.internal.generic.GOTO_W;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -7,15 +11,15 @@ import java.util.Objects;
 
 import java.util.stream.Collectors;
 
-public class TxtFileReader {
+class TxtFileReader {
     private  String urlText;
 
-    public TxtFileReader(String urlText) {
+    TxtFileReader(String urlText) {
 
         this.urlText = Objects.requireNonNull(urlText, "The URL text is null.");
     }
 
-    public String fileReader() {
+    String fileReader() {
         FileReader fr = null;
         BufferedReader br=null;
         String text = null;
@@ -55,8 +59,9 @@ public class TxtFileReader {
         return text;
     }
 
-    public String download() {
+    String download() {
         URL url;
+
         try {
             url = new URL(urlText);
 

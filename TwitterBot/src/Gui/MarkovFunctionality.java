@@ -8,7 +8,7 @@ class MarkovFunctionality {
     static final int WORDS_PER_STATE = 3;
     String urlText;
     int wortlaenge;
-    protected String text = null;
+    String text = null;
     private long end = System.currentTimeMillis();
     static Controller controller = new Controller();
 
