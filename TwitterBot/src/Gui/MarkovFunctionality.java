@@ -34,7 +34,7 @@ class MarkovFunctionality {
             outputWithDuration("Downloaded the Text ", start, end);
 
             start = System.currentTimeMillis();
-            String[] words = text.split("(\\s|\\W)+");
+        String[] words = text.split("(\\d\\S\\d|\\s|\\d|\\W\\w\\W)+");
             end = System.currentTimeMillis();
 
             outputWithDuration("Text preprocessing took ", start, end);
@@ -53,7 +53,7 @@ class MarkovFunctionality {
 
     @FXML
     private static void outputWithDuration(String text, long start, long end) {
-        controller.Label_StatusUpdate.setText(text + (end - start) + " milliseconds.");
+        controller.labelStatusUpdate.setText(text + (end - start) + " milliseconds.");
     }
 
     private static String concat(String... strings) {

@@ -20,25 +20,27 @@
                      <children>
                          <TextArea fx:id="MarkovTextField" layoutX="277.0" layoutY="41.0" onInputMethodTextChanged="#checkSentenceLength01" onKeyTyped="#checkSentenceLength01" prefHeight="60.0" prefWidth="499.0" />
                         <Button fx:id="btn_sendTweet" layoutX="71.0" layoutY="41.0" mnemonicParsing="false" onAction="#markovGenerateButton" prefHeight="60.0" prefWidth="130.0" text="Generate MarkovText" />
-                        <Button fx:id="btn_postOnTwitter" layoutX="71.0" layoutY="136.0" mnemonicParsing="false" onAction="#postOnTwitterButton" prefHeight="46.0" prefWidth="130.0" text="Post on Twitter" />
+                        <Button fx:id="btnPostOnTwitter" layoutX="71.0" layoutY="136.0" mnemonicParsing="false" onAction="#postOnTwitterButton" prefHeight="46.0" prefWidth="130.0" text="Post on Twitter" />
                         <TextField fx:id="AnzahlDerWoerter" layoutX="704.0" layoutY="147.0" prefHeight="25.0" prefWidth="43.0" />
                         <Label layoutX="650.0" layoutY="119.0" text="Anzahl der Wörter" />
                         <TextField fx:id="UrlTextFeld" layoutX="464.0" layoutY="244.0" prefHeight="25.0" prefWidth="283.0" />
                         <Label layoutX="463.0" layoutY="214.0" text="Hier URL eingeben" />
-                        <Button fx:id="btn_setUrlButton" layoutX="763.0" layoutY="244.0" mnemonicParsing="false" onAction="#setUrl" prefHeight="25.0" prefWidth="86.0" text="set Url" />
+                        <Button fx:id="btnSetUrlButton" layoutX="763.0" layoutY="244.0" mnemonicParsing="false" onAction="#setUrl" prefHeight="25.0" prefWidth="86.0" text="set Url" />
                         <Label layoutX="435.0" layoutY="747.0" prefHeight="17.0" prefWidth="153.0" visible="false" />
-                         <Label fx:id="Label_StatusUpdate" layoutX="449.0" layoutY="739.0" />
-                         <Label fx:id="label_anzahlZeichen" layoutX="792.0" layoutY="84.0" text="0/240" />
-                         <Button fx:id="btn_setPeriod" layoutX="409.0" layoutY="515.0" mnemonicParsing="false" onAction="#setPeriod" text="periodisch Posten" />
+                         <Label fx:id="labelStatusUpdate" layoutX="449.0" layoutY="739.0" />
+                         <Label fx:id="labelanzahlZeichen" layoutX="792.0" layoutY="84.0" text="0/240" />
+                         <Button fx:id="btnSetPeriod" layoutX="409.0" layoutY="515.0" mnemonicParsing="false" onAction="#setPeriod" text="periodisch Posten" />
                          <TextField fx:id="periodTextField" layoutX="586.0" layoutY="515.0" />
                          <Label layoutX="409.0" layoutY="376.0" text="Periodisch posten">
-                           <font>
-                              <Font name="Times New Roman Bold" size="16.0" />
-                           </font></Label>
+                             <font>
+                                 <Font name="Times New Roman Bold" size="16.0" />
+                             </font>
+                         </Label>
                          <Label layoutX="592.0" layoutY="482.0" text="Wiederholungsdauer" />
                          <Button layoutX="408.0" layoutY="555.0" mnemonicParsing="false" onAction="#stopPeriodTweet" text="Tweeten beenden" />
-                         <Button fx:id="btn_setSentenceLength" layoutX="768.0" layoutY="149.0" mnemonicParsing="false" onAction="#setSatzlaenge" text="set Satzlänge" />
+                         <Button fx:id="btnSetSentenceLength" layoutX="768.0" layoutY="149.0" mnemonicParsing="false" onAction="#setSatzlaenge" text="set Satzlänge" />
                          <Label layoutX="788.0" layoutY="519.0" prefHeight="18.0" prefWidth="65.0" text="in Minuten" />
+                        <Button fx:id="btnFlorentinWill" layoutX="74.0" layoutY="608.0" mnemonicParsing="false" onAction="#useFlorentinWillButton" text="Florentin Will Button" />
                      </children>
                   </AnchorPane>
             </content>
@@ -51,12 +53,12 @@
                         <Label layoutX="267.0" layoutY="111.0" text="setOAuthConsumerSecret" />
                         <Label layoutX="267.0" layoutY="154.0" text="setOAuthAccessToken" />
                         <Label layoutX="267.0" layoutY="197.0" text="setOAuthAccessTokenSecret" />
-                         <Button fx:id="btn_setAuthKeys" layoutX="191.0" layoutY="64.0" mnemonicParsing="false" onAction="#setAuthOnStart" text="set Keys" />
+                         <Button fx:id="btnSetAuthKeys" layoutX="191.0" layoutY="64.0" mnemonicParsing="false" onAction="#setAuthOnStart" text="set Keys" />
                          <TextField fx:id="setOAuthConsumerKey" layoutX="464.0" layoutY="64.0" prefHeight="25.0" prefWidth="418.0" />
                          <TextField fx:id="setOAuthConsumerSecret" layoutX="464.0" layoutY="108.0" prefHeight="25.0" prefWidth="418.0" />
                          <TextField fx:id="setOAuthAccessToken" layoutX="464.0" layoutY="150.0" prefHeight="25.0" prefWidth="419.0" />
                          <TextField fx:id="setOAuthAccessTokenSecret" layoutX="464.0" layoutY="194.0" prefHeight="25.0" prefWidth="418.0" />
-                         <Button fx:id="btn_keysSpeichern" layoutX="155.0" layoutY="138.0" mnemonicParsing="false" onAction="#setProperties" text="Keys speichern" />
+                         <Button fx:id="btnKeysSpeichern" layoutX="155.0" layoutY="138.0" mnemonicParsing="false" onAction="#setProperties" text="Keys speichern" />
                      </children></AnchorPane>
             </content>
           </Tab>
