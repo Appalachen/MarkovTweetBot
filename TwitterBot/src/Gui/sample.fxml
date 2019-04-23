@@ -48,8 +48,6 @@
                          <Button fx:id="btnSetSentenceLength" layoutX="768.0" layoutY="149.0" mnemonicParsing="false"
                                  onAction="#setSatzlaenge" text="set Satzlänge"/>
                          <Label layoutX="788.0" layoutY="519.0" prefHeight="18.0" prefWidth="65.0" text="in Minuten"/>
-                         <Button fx:id="btnFlorentinWill" layoutX="74.0" layoutY="608.0" mnemonicParsing="false"
-                                 onAction="#useFlorentinWillButton" text="Florentin Will Button"/>
                      </children>
                   </AnchorPane>
             </content>

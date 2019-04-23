@@ -7,7 +7,7 @@ import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.Properties;
 
-import static Gui.TwitterFunctionality.likeFlorentinWill;
+
 import static Gui.TwitterFunctionality.sendTweet;
 
 public class Controller implements Runnable {
@@ -95,9 +95,6 @@ public class Controller implements Runnable {
         }
     }
 
-    public void useFlorentinWillButton() {
-        likeFlorentinWill();
-    }
 
     public void setUrl() {
 

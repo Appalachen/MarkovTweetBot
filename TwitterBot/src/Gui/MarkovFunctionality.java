@@ -26,12 +26,9 @@ class MarkovFunctionality {
                 text = fileDownloader.fileReader();
             }
         }
-//        https://ia800503.us.archive.org/19/items/josefinemutzenba31284gut/31284-8.txt
-//      text = fileDownloader.fileReader();
-//        System.out.println(text);
 
 
-            outputWithDuration("Downloaded the Text ", start, end);
+        outputWithDuration("Downloaded the Text ", start, end);
 
             start = System.currentTimeMillis();
         String[] words = text.split("(\\d\\S\\d|\\s|\\d|\\W\\w\\W)+");

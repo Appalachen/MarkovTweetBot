@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TwitterBot:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TwitterBot_jar</output-path>
+    <root id="archive" name="TwitterBot.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="TwitterBot" />
+      <element id="library" level="project" name="java" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/twitter4j-4.0.7/lib/twitter4j-core-4.0.7.jar" path-in-jar="/" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/twitter4j-4.0.7/lib/twitter4j-core-4.0.7.jar" />
+    </root>
+  </artifact>
+</component>

@@ -41,27 +41,6 @@ static void sendTweet(String Text) {
     }
 }
 
-    static void likeFlorentinWill() {
-        ConfigurationBuilder cb = new ConfigurationBuilder();
-
-        cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(OAuthConsumerKey)
-                .setOAuthConsumerSecret(OAuthConsumerSecret)
-                .setOAuthAccessToken(OAuthAccessToken)
-                .setOAuthAccessTokenSecret(OAuthAccessTokenSecret);
-        TwitterFactory tf = new TwitterFactory(cb.build());
-        Twitter twitter = tf.getInstance();
-        try {
-            Query query = new Query("Florentin Will");
-            QueryResult result = twitter.search(query);
-            for (Status status : result.getTweets()) {
-                twitter.tweets().retweetStatus(status.getId());
-            }
-        } catch (TwitterException e) {
-            e.printStackTrace();
-        }
-    }
-
     private static void splitTweets(String text) {
         int numberOfTweets = text.length() / 240;
         controller.setLabelStatusUpdate(Integer.toString(numberOfTweets));
